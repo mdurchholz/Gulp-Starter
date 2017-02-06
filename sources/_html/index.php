@@ -2,24 +2,13 @@
 require_once('assets/includes/Mobile_Detect.php');
 $detect = new Mobile_Detect;
 
-$currentpage = $_SERVER['REQUEST_URI'];
-if($currentpage=="/" || $currentpage=="/index.php" || $currentpage=="" ) {
-	$page = 'home';
-}else{
-	$page = 'page';
-}
-
-if( $detect->isMobile() || $detect->isTablet() ){
-	$device = 'mobile';
-}else{
-	$device = 'desktop';
-}
+$device = $detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'mobile') : 'desktop';
 
 ?><!DOCTYPE html>
-<!--[if lte IE 8]> <html class="ie9 ie8-7 <?=$page.' '.$device?>"> <![endif]-->
-<!--[if IE 9]> <html class="ie9 <?=$page.' '.$device?>"> <![endif]-->
+<!--[if lte IE 8]> <html class="ie9 ie8-7 <?php echo $device; ?>"> <![endif]-->
+<!--[if IE 9]> <html class="ie9 <?php echo $device; ?>"> <![endif]-->
 <!--[if !IE]>-->
-<html class="<?=$page.' '.$device?>">
+<html class="<?php echo $device; ?>">
 <!--<![endif]-->
 <head>
 <?php include('assets/includes/doctype.php'); ?>
