@@ -27,7 +27,9 @@ Install package from [npmjs.com](https://www.npmjs.com/)
 - gulp            : Runs all commands below
 - gulp js         : Compresses all listed .js files into master.min.js
 - gulp css        : Compresses all listed .scss files into master.min.css
-- gulp html       : Compresses all listed .scss files into master.min.css
+- gulp html       : Runs app and includes
+    * gulp app      : Compresses all listed .php/.html files into /public_html
+    * gulp includes : Compresses all listed .php/.html files into /public_html/includes
 - gulp watch      : Watches all files listed and compresses on save
 
 ### Resources:
