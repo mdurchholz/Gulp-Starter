@@ -32,13 +32,11 @@ Install package from [npmjs.com](https://www.npmjs.com/)
 
 ### Resources:
 
-[Ruby](http://rubyinstaller.org/downloads/)
-
-[NodeJs](https://nodejs.org/en/)
-
-[Gulp](https://www.npmjs.com/package/gulp)
+- [Ruby](http://rubyinstaller.org/downloads/)
+- [NodeJs](https://nodejs.org/en/)
+- [Gulp](https://www.npmjs.com/package/gulp)
 
 
 (optional)
 
-[Git Bash](https://git-scm.com/downloads)
+- [Git Bash](https://git-scm.com/downloads)
