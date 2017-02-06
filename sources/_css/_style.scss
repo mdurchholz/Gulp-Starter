@@ -11,19 +11,20 @@
 2C   - Banner
 2D   - Content
 2E   - Footer
-2F   - Desktop
-2G   - Mobile
-2H   - Internet Explorer
+2F   - Mobile
+2G   - Internet Explorer
 
 FONTS USED
 --------------------------------------------------------------------------------------------------
-
+font-family: Arial, Verdana, sans-serif;
 
 ----------------------------------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 01 - STYLE.CSS : GENERAL STUFF FIRST
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ------------------------------------------------------------------------------------------------- */
+*                                                           { user-select: none; box-sizing: border-box; backface-visibility: hidden;}
+
 body                                                        { font-family: Arial, Verdana, sans-serif; font-weight: 400; line-height:1.125em;}
 
 
@@ -35,11 +36,8 @@ ol,ol li,
 ul,ul li                                                    { list-style-type:none; vertical-align:top; }
                                                             /* Fixes alignment issues */
 
-p                                                           { margin-bottom:1em; vertical-align:top; }
+p                                                           { margin: 20px 0; vertical-align:top; }
                                                             /* Makes all paragraphs have 1em scaling margin on bottom. */
-
-[class^="col_0"] p:last-child                               { margin-bottom:0; }
-                                                            /* Makes last paragraph in containers have 0px margin on bottom. */
 
 h1, h2, h3,
 h4, h5, h6                                                  { font-style: normal; font-weight:400; font-style:normal; display:block; line-height:1.125em; margin-bottom: 10px; color: #333;}
@@ -54,19 +52,24 @@ h6                                                          { font-size: 20px;}
 a, img                                                      { text-decoration: none; border: none; outline: none; color: #00495d;}
                                                             /* Default definition for all links. */
 
-.svg path                                                   { transition: fill .2s ease;}
 
-.left                                                       { float: left;}
-.right                                                      { float: right;}
-.center                                                     { float: none; text-align: center; margin: 0 auto;}
+/*1A. Patterns
+-----------------------------------------------
+/////////////////////////////////////////////// */
+/*****************
+** Vertical align middle
+*****************/
+.vam                                                        { position: relative; font-size: 0;}
+.vam > *                                                    { display: inline-block; vertical-align: middle;}
+.vam .fill                                                  { width: 0; height: 100%;}
 
-.floatL                                                     { margin: 5px 20px 10px 0;}
-.floatR                                                     { margin: 5px 0 10px 20px;}
 
-.transition                                                 { transition: all 0.35s ease;}
-
-*                                                           { box-sizing: border-box;}
-
+/*****************
+** Clearfix
+*****************/
+.cf:before                                                  { content: ""; display: table;}
+.cf:after                                                   { content: ""; display: table; clear: both;}
+.cf
 
 
 /* -------------------------------------------------------------------------------------------------
@@ -81,46 +84,40 @@ body                                                        { background: #fff;}
 /*2A. Header
 -----------------------------------------------
 /////////////////////////////////////////////// */
-.header                                                     { }
+#header                                                     { }
 
 
 /*2B. Nav
 -----------------------------------------------
 /////////////////////////////////////////////// */
-.nav                                                        { }
+#nav                                                        { }
 
 
 /*2C. Banner
 -----------------------------------------------
 /////////////////////////////////////////////// */
-.banner                                                     { }
+#banner                                                     { }
 
 
 /*2D. Content
 -----------------------------------------------
 /////////////////////////////////////////////// */
-.content                                                    { }
+#content                                                    { }
 
 
 /*2E. Foot
 -----------------------------------------------
 /////////////////////////////////////////////// */
-.footer                                                     { }
+#footer                                                     { }
 
 
-/*2F. Desktop
------------------------------------------------
-/////////////////////////////////////////////// */
-html.desktop                                                { }
-
-
-/*2G. Mobile
+/*2F. Mobile
 -----------------------------------------------
 /////////////////////////////////////////////// */
 html.mobile                                                 { }
 
 
-/*2H. Internet Explorer
+/*2G. Internet Explorer
 -----------------------------------------------
 /////////////////////////////////////////////// */
 html.ie9                                                    { }

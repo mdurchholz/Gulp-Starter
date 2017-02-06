@@ -13,25 +13,16 @@ $device = $detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'mobile') : 'd
 <head>
 <?php include('assets/includes/doctype.php'); ?>
 </head>
-
 <body>
-<div class="wrapper">
-	<div class="section header">
-    	<div class="row long">
-
-			<div class="col_08">
-				<h1 class="title">Site</h1>
-			</div>
-
-		</div>
-    </div>
-	<div class="section content"></div>
-	<div class="section footer"></div>
+<div id="wrapper">
+	<div id="header">
+		<nav id="nav"></nav>
+	</div>
+	<div id="content">
+		<div id="banner"></div>
+	</div>
+	<div id="footer"></div>
 </div>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 <!-- Custom Scripts & Plugins for Footer -->
 <script type="text/javascript" src="/assets/scripts/master.min.js"></script>
 </body>

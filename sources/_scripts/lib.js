@@ -12,11 +12,11 @@ var bInfo = new browserInfo(),
     $wind = $(window),
     $html = $('html'),
     $body = $('body'),
-    $wrap = $('.wrapper'),
-    $head = $('.header'),
-    $navi = $('.nav'),
-    $bann = $('.banner'),
-    $foot = $('.footer');
+    $wrap = $('#wrapper'),
+    $head = $('#header'),
+    $navi = $('#nav'),
+    $bann = $('#banner'),
+    $foot = $('#footer');
 
 
 
