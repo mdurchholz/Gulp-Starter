@@ -3,16 +3,24 @@
 ### Run the following commands:
 
 Make sure your current directory is /sources
+
 ```cd sources/```
 
+
 Install all packages listed under dependencies from our package.json
+
 ```$ npm install```
 
+
 Globally install the gulp command to use through a command prompt
+
 ```$ npm install gulp -g```
 
+
 Install package from [npmjs.com](https://www.npmjs.com/)
+
 ```$ npm install package-name```
+
 
 ### Gulp Commands:
 
@@ -25,8 +33,11 @@ Install package from [npmjs.com](https://www.npmjs.com/)
 ### Resources:
 
 [Ruby](http://rubyinstaller.org/downloads/)
+
 [NodeJs](https://nodejs.org/en/)
+
 [Gulp](https://www.npmjs.com/package/gulp)
+
 
 (optional)
 
