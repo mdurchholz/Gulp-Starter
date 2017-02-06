@@ -8,8 +8,6 @@ Make sure your current directory is /sources
 Install all packages listed under dependencies from our package.json
 ```$ npm install```
 
-**NOTE: The previous --dev flag recursively adds in devDependencies and will cause a very long and possibly endless loop. For now, put all packages inside dependencies.
-
 Globally install the gulp command to use through a command prompt
 ```$ npm install gulp -g```
 
