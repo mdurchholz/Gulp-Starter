@@ -1,0 +1,56 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  GENERAL
+////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------------------------- */
+*                                                           { box-sizing: border-box; backface-visibility: hidden;}
+
+body                                                        { font-family: $openSans; font-weight: 400; font-size: 100%; color: $grey-dark;}
+
+img                                                         { max-width: 100%; vertical-align: bottom;}
+                                                            /* Responsive images. Also, fixed spacing at bottom of image sometimes. */
+
+div, span, p,
+ol, ol li,
+ul, ul li                                                   { list-style-type: none; vertical-align: top; padding: 0; margin: 0;}
+                                                            /* Fixes alignment issues */
+
+p, li, dl,                                                  { font-size: $fontSize-sm; line-height: 1.8em;}
+address                                                     { font-size: $fontSize-xs;}
+li li                                                       { font-size: 100%;}
+                                                            /* Makes all paragraphs have 1em scaling margin on bottom. */
+
+ul.half, ol.half                                            { width: 50%; float: left;}
+
+h1, h2, h3,
+h4, h5, h6                                                  { color: $grey-dark; @include fonts($oswald, none); font-style: normal; display: block; margin: 0;}
+
+.darken
+{
+    &, p, li, dl, dd, dt,
+    a, a:hover, a:focus,
+    h1, h2, h3,
+    h4, h5, h6                                              { color: #fff;}
+}
+
+h1                                                          { font-size: $fontSize-xxl;}
+h2                                                          { font-size: $fontSize-lg;}
+h3                                                          { font-size: $fontSize-md;}
+
+a, i, img                                                   { text-decoration: none; border: none; outline: none; transition: color $speed ease, background $speed ease, border $speed ease;}
+a                                                           { color: $color-1;}
+a:hover,  .btn:hover,
+a:focus,  .btn:focus,
+a:active, .btn:active, .btn:active:focus                    { color: $color-1-lite; outline: 0; text-decoration: none;}
+                                                            /* Default definition for all links. */
+
+svg *                                                       { transition: all $speed ease;}
+
+h1, h2, h3 { sup                                            { top: -1.25em; font-size: 50%;}}
+
+blockquote                                                  { border-left: 5px solid #7ab800; @include fonts($openSans,$fontSize-md,300,1.5); font-style: italic; padding: 0 0 0 $elementSpacing; max-width: 80%;}
+blockquote *                                                { font-size: 100%;}
+
+dl                                                          { }
+dt                                                          { margin-top: $mobileSpacing;}
+dd                                                          { }

@@ -1,0 +1,193 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  TABLE OF CONTENTS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------
+03 - MEDIAQUERIES
+3A   - High DPI
+3B   - Above widths
+3C   - Dektop
+3D   - Tablets
+3E   - Cellular
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+04 - MEDIAQUERIES
+////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------
+/* 4A. High DPI
+----------------------------------------
+////////////////////////////////////// */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi)
+{
+
+}
+
+
+
+
+/* 4B. Mobile Devices
+----------------------------------------
+////////////////////////////////////// */
+@include mobileBreak('.mobile');
+
+
+
+
+/* 4B. Above widths
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (min-width: 1901px)
+{
+
+}
+
+
+@media screen and (min-width: 1601px)
+{
+
+}
+
+
+$spacing: 10.8em;
+@media screen and (min-width: 1200px)
+{
+    [class^="container"]                                        { padding-right: $spacing; padding-left: $spacing;}
+}
+
+
+@media screen and (min-width: 992px)
+{
+
+}
+
+
+@media screen and (min-width: 768px)
+{
+
+}
+
+
+
+
+/* 4C. Dektop
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 1600px)
+{
+
+}
+
+
+@media screen and (max-width: 1400px)
+{
+
+}
+
+
+@media screen and (max-width: 1250px)
+{
+
+}
+
+
+@media screen and (max-width: 1199px)
+{
+
+}
+
+
+
+
+/* 4D. Tablets
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 1024px)
+{
+    @include mobileBreak();
+}
+
+
+@media screen and (max-width: 991px)
+{
+    @include elementSpacing($mobileSpacing);
+}
+
+
+@media screen and (max-width: 767px)
+{
+    h1                                                      { font-size: $fontSize-xxl * .9;}
+    h2                                                      { font-size: $fontSize-xl  * .9;}
+    h3                                                      { font-size: $fontSize-lg  * .9;}
+
+    blockquote                                              { font-size: $fontSize-md; max-width: 90%; padding-left: 15px;}
+
+    .post-preview                                           { margin: $elementSpacing 0;}
+
+    .no-gutter .row > div                                   { padding-left: 15px; padding-right: 15px;}
+    .no-gutter .post-preview                                { margin-top: 0;}
+
+    .btn                                                    { padding: 12px 15px;}
+
+
+    .section
+    {
+        &, &.padd-md, &.padd-lg                             { padding-top: $elementSpacing;}
+
+        &.shaded, &.darken                                  { padding-bottom: $elementSpacing;}
+
+        .row > div:first-child .post-preview                { margin-top: 0;}
+    }
+
+
+    .half-wrap
+    {
+        .post-preview                                       { padding: 0; display: block; height: auto;}
+        .post-image                                         { position: relative; left: auto; right: auto; width: 100%;}
+        .post-details                                       { padding: $mobileSpacing; padding-bottom: 0; min-height: 0; display: block;}
+
+        .shaded, .darken
+        {
+            .post-details                                   { padding: $elementSpacing;}
+        }
+    }
+}
+
+
+
+
+/* 4E. Cellular
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 667px)
+{
+    body                                                    { font-size: 85%;}
+
+    h1                                                      { font-size: $fontSize-xxl * .8;}
+    h2                                                      { font-size: $fontSize-xl  * .8;}
+}
+
+
+
+@media screen and (max-width: 600px)
+{
+    #wpadminbar                                             { position: fixed;}
+}
+
+
+@media screen and (max-width: 480px)
+{
+    .wysiwyg { .alignleft, .alignright                      { float: none; max-width: 100%; margin: 20px auto;}}
+}
+
+
+@media screen and (max-width: 375px)
+{
+    .carousel.slider
+    {
+        *[data-mh]                                          { height: auto !important;}
+
+        .slick > div                                        { width: 100%;}
+    }
+}

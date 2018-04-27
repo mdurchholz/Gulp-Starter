@@ -1,0 +1,39 @@
+/*--------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  BUTTONS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------------------------------------------------------------------------------------*/
+.btn                                                        { display: inline-block; position: relative; background: $color-1; color: #fff; border-radius: 0; height: auto; @include fonts($oswald, $fontSize-sm, 400, 1); padding: 16px 22px; cursor: pointer; transition: all $speed ease;
+
+    /* DEFAULT */
+    &:hover, &:active, &:focus, &:active:focus              { background: $color-1-lite; color: #fff;}
+
+
+    /* Blank */
+    &.blank                                                 { background: none; padding: 0; color: $grey;
+        &:hover, &:active, &:focus, &:active:focus          { background: none;}
+
+        img                                                 { margin: 0; max-height: 45px;}
+    }
+
+
+    /* Blank */
+    &.dark                                                  { background: $grey-dark; color: #fff;
+        &:hover, &:active, &:focus, &:active:focus          { background: $grey;}
+    }
+}
+
+/*******************
+** Inline Buttons
+*******************/
+.btns                                                       {
+    .btn                                                    { margin-right: 10px;}
+    .btn:last-child                                         { margin: 0;}
+
+    .link                                                   { padding-right: 10px; margin: 0; position: relative; /* make up space for inline-block */
+        &:last-child                                        { padding-right: 0;}
+        & + .link                                           { padding-left: 15px;
+            &::before                                       { @include absolute(0,auto,0,-1px); margin: auto; width: 2px; height: 16px; content: "";}
+        }
+        & + .btn                                            { margin-left: 0;}
+}   }

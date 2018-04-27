@@ -1,26 +1,29 @@
 {
-    "name"   : "gulp",
+    "name": "gulp-starter",
     "version": "0.1.0",
-    "author" : "SFP",
+    "author": "Martin Durchholz",
     "private": true,
-    "devDependencies":
-    {
-
-    },
-    "dependencies":
-    {
-        "jquery": "*",
-        "bootstrap": "*",
-        "font-awesome": "*",
-
-        "gulp": "*",
-        "gulp-sass": "*",
+    "devDependencies": {
+        "browser-sync": "^2.23.6",
+        "gulp": "github:gulpjs/gulp#4.0",
+        "gulp-autoprefixer": "^5.0.0",
         "gulp-concat": "*",
-        "gulp-rename": "*",
-        "gulp-uglify": "*",
-        "gulp-cssnano": "*",
+        "gulp-connect-php": "^1.0.3",
+        "gulp-cssnano": "^2.1.3",
         "gulp-htmlmin": "*",
-        "gulp-autoprefixer": "*",
-        "gulp-load-plugins": "*"
+        "gulp-load-plugins": "*",
+        "gulp-rename": "*",
+        "gulp-sass": "^4.0.1",
+        "gulp-uglify": "^3.0.0"
+    },
+    "dependencies": {
+        "@fancyapps/fancybox": "^3.3.4",
+        "bootstrap-sass": "^3.3.7",
+        "equal-height": "^1.1.0",
+        "font-awesome": "^4.7.0",
+        "jquery": "1.12.4",
+        "jquery-match-height": "^0.7.2",
+        "js-cookie": "^2.1.4",
+        "slick-carousel": "^1.7.1"
     }
 }
