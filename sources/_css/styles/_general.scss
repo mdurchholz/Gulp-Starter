@@ -15,7 +15,7 @@ ol, ol li,
 ul, ul li                                                   { list-style-type: none; vertical-align: top; padding: 0; margin: 0;}
                                                             /* Fixes alignment issues */
 
-p, li, dl,                                                  { font-size: $fontSize-sm; line-height: 1.8em;}
+p, li, dl                                                   { font-size: $fontSize-sm; line-height: 1.8em;}
 address                                                     { font-size: $fontSize-xs;}
 li li                                                       { font-size: 100%;}
                                                             /* Makes all paragraphs have 1em scaling margin on bottom. */

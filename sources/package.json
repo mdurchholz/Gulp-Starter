@@ -1,6 +1,6 @@
 {
     "name": "gulp-starter",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "Martin Durchholz",
     "private": true,
     "devDependencies": {
@@ -17,13 +17,13 @@
         "gulp-uglify": "^3.0.0"
     },
     "dependencies": {
-        "@fancyapps/fancybox": "^3.3.4",
+        "@fancyapps/fancybox": "^3.3.5",
         "bootstrap-sass": "^3.3.7",
         "equal-height": "^1.1.0",
         "font-awesome": "^4.7.0",
-        "jquery": "1.12.4",
+        "jquery": "^1.12.4",
         "jquery-match-height": "^0.7.2",
-        "js-cookie": "^2.1.4",
-        "slick-carousel": "^1.7.1"
+        "js-cookie": "^2.2.0",
+        "slick-carousel": "^1.8.1"
     }
 }

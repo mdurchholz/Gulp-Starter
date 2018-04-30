@@ -2,6 +2,7 @@ var gulp          = require('gulp'),                  // Gulp
     plugins       = require('gulp-load-plugins')(),   // This plugin allows us to use all of our packageswithout creating varibles for each one
     connect       = new plugins.connectPhp(),         // Gulp php server
     browserSync   = require('browser-sync').create(), // BrowserSync
+    htmlOptions   = {collapseWhitespace: true},       // HTML minification options
 
 
     /************
@@ -13,7 +14,7 @@ var gulp          = require('gulp'),                  // Gulp
     nodeRoot      = 'node_modules/',
 
     sourceCss     = '_css/',
-
+    sourceHtml    = '_html',
     sourceScripts = '_scripts/',
 
 
@@ -53,6 +54,13 @@ var gulp          = require('gulp'),                  // Gulp
                             sourceCss+'main.scss'
                         ],
                         pro_styles: proRoot+'css',
+
+
+                        /************
+                        * HTML
+                        ************/
+                        // dev_html: sourceHtml+'/**/*',
+                        // pro_html: proRoot,
 
 
                         /************
@@ -120,6 +128,19 @@ gulp.task('css', function(done){
         .pipe(browserSync.stream());
 
     done();
+});
+
+
+
+
+/*  gulp partials
+/////////////////////////////////////////////////////////
+// Minimize all HTML files
+-------------------------------------------------------*/
+gulp.task('html', function() {
+    return gulp.src(paths.dev_html)
+        .pipe($.htmlmin(htmlOptions))
+        .pipe(gulp.dest(paths.pro_html));
 });
 
 
