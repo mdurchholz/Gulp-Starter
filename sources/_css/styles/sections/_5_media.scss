@@ -138,10 +138,16 @@ only screen and (                min-resolution: 2dppx)
 }
 
 
+
 @media screen and (max-width: 782px)
 {
-    .admin-bar > #header                                    { top: 46px;}
+    .admin-bar
+    {
+        > #header                                           { top: $wpBarM;}
+        > #mobile-wrap                                      { padding-top: $wpBarM+$headerT;}
+    }
 }
+
 
 
 @media screen and (max-width: 767px)
@@ -249,6 +255,8 @@ only screen and (                min-resolution: 2dppx)
     #mobile-wrap,
     #header + #wrapper { &, .is-scrolling &                 { padding-top: $headerM;}}
     #header            { &, .is-scrolling &                 { height: $headerM;}}
+
+    .admin-bar > #mobile-wrap                               { padding-top: $wpBarM+$headerM;}
 }
 
 

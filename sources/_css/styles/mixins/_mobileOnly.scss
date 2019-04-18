@@ -20,9 +20,11 @@
     #mobile-wrap,
     #header + #wrapper { &, .is-scrolling &                 { padding-top: $headerT;}}
     #header            { &, .is-scrolling &                 { height: $headerT;
-        .logo                                               { }
+        .logo                                               { height: 35px; top: 0;}
     }}
 
 
-    #mobile-button                                          { display: block;}
+    #nav, #header .top                                      { display: none;}
+    #mobile-wrap, #mobile-button                            { display: block;}
+    
 }

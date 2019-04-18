@@ -102,6 +102,15 @@ $fa-font-path : "../fonts/font-awesome";
 
 
 
+/********************************
+** Wordpress menu height
+*********************************/
+$wpBarD: 32px;
+$wpBarM: 46px;
+
+
+
+
 /* Mixins
 ----------------------------------------
 ////////////////////////////////////// */
@@ -111,15 +120,16 @@ $fa-font-path : "../fonts/font-awesome";
 @function max($numbers...){ @return m#{a}x(#{$numbers}); }
 @function min($numbers...){ @return m#{i}n(#{$numbers}); }
 
+@import "../node_modules/compass-mixins-fixed/lib/compass";
 @import "../node_modules/font-awesome/scss/font-awesome";
 @import "../node_modules/bootstrap/scss/bootstrap";
+
 
 
 /********************
 ** Custom Mixins
 *********************/
 @import "styles/mixins/defaults";
-@import "styles/mixins/fonts";
 @import "styles/mixins/mobileOnly";
 @import "styles/mixins/elementSpacing";
 

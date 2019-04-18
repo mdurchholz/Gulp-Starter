@@ -10,7 +10,7 @@
 
     .is-scrolling &                                         { height: $headerS;}
 
-    .admin-bar > &                                          { top: 32px;}
+    .admin-bar > &                                          { top: $wpBarD;}
 }
 
 
@@ -33,6 +33,8 @@
 #mobile-wrap
 {
     &                                                       { display: none;}
+
+    .admin-bar > &                                          { padding-top: $wpBarD+$headerT;}
 }
 
 
