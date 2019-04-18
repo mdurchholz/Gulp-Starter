@@ -1,0 +1,63 @@
+/*--------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  HEADER
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Find all variables inside 'my-mixins'
+--------------------------------------------------------------------------------------------------*/
+#header
+{
+    &                                                       { background: rgba(0,0,0,0.5); @include fixed(0,0,auto,auto); z-index: 10; height: $headerH; width: 100%; transition: all $speed ease;}
+
+    .is-scrolling &                                         { height: $headerS;}
+
+    .admin-bar > &                                          { top: 32px;}
+}
+
+
+
+
+/*******************
+** Main Navigation
+*******************/
+#nav
+{
+    &                                                       { }
+}
+
+
+
+
+/*******************
+** Mobile Menu
+*******************/
+#mobile-wrap
+{
+    &                                                       { display: none;}
+}
+
+
+
+
+/*******************
+** Mobile Button
+*******************/
+#mobile-button                                              { display: none; @include absolute(0,$mobileSpacing,0,auto); margin: auto; height: 100%; cursor: pointer;
+    .btn                                                    { padding: 12px;}
+
+    ul                                                      { width: 20px; padding: 0; margin: 0;
+        li                                                  { position: relative; z-index: 1; width: 100%; height: 2px; margin: 0 auto; background: #fff; transform: translate3d(0,0,0) rotate(0); animation-duration: 0.75s; animation-fill-mode: both; transform-origin: center;}
+        li.t                                                { animation-name: closeMenuTop; border: none;}
+        li.m                                                { margin: 3px auto; transition-delay: 0.30s;}
+        li.b                                                { animation-name: closeMenuBot; border: none;}
+    }
+
+    span                                                    { font-size: 13px; margin-left: 8px;}
+}
+
+
+.open-menu #mobile-button ul
+{
+    li.t                                                    { animation-name: openMenuTop;}
+    li.m                                                    { background: transparent; transition-delay: 0s;}
+    li.b                                                    { animation-name: openMenuBot;}
+}

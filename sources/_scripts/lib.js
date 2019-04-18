@@ -6,7 +6,7 @@
 /* Variables
 ----------------------------------------------- */
 var bInfo = new browserInfo(),
-    cssEv = new events(),
+    TorC  = new events(),
 
     $docu = $(document),
     $wind = $(window),
@@ -17,6 +17,7 @@ var bInfo = new browserInfo(),
     $navi = $('#nav'),
     $bann = $('#banner'),
     $foot = $('#footer');
+
 
 
 /* FUNC - Creates Console object to avoid IE issues
@@ -51,11 +52,26 @@ var bInfo = new browserInfo(),
 ----------------------------------------------- */
 function events()
 {
+    var isTouch = !!('ontouchstart' in window ),
+        TorC    = !this.desk && isTouch ? true : false;
+
+    this.desk  = hasClass(document.getElementsByTagName("HTML")[0], 'desktop');
+
+    this.click = TorC ? 'touchstart' : 'click';
+    this.down  = TorC ? 'touchstart' : 'mousedown';
+    this.up    = TorC ? 'touchend'   : 'mouseup';
+    this.move  = TorC ? 'touchmove'  : 'mousemove';
+
     this.anistart = 'webkitAnimationStart oanimationstart msAnimationStart animationstart';
     this.aniEnd   = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
 
     this.transStart = 'webkitTransitionStart otransitionstart oTransitionStart msTransitionStart transitionstart';
     this.transEnd   = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+
+    function hasClass(element, cls)
+    {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    }
 }
 
 
@@ -83,16 +99,17 @@ function browserInfo()
 }
 
 
-/* FUNC - Asynchronously load in scripts
+/* FUNC - Check if value is in array
 ----------------------------------------------- */
-var firstScriptTag = document.getElementsByTagName('script')[0];
-
-function addScript(list)
+Array.prototype.contains = function(obj)
 {
-    for(var i=0; i<list.length; i++)
+    var i = this.length;
+    while (i--)
     {
-        var tag = document.createElement('script');
-        tag.src = list[i];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        if (this[i] === obj)
+        {
+            return true;
+        }
     }
-}
+    return false;
+};

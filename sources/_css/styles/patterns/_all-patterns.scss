@@ -1,0 +1,132 @@
+/*--------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  PATTERNS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------------------------------------------------------------------------------------*/
+/*******************
+** Vertical Align
+*******************/
+[class*="va-"]                                              { position: relative; height: 100%; font-size: 0;
+    > *                                                     { display: inline-block; float: none; font-size: 10px;}
+    > .fill                                                 { font-size: 0!important; width: 0; height: 100%;}
+}
+
+.va-t > *                                                   { vertical-align: top;}
+.va-m > *                                                   { vertical-align: middle;}
+.va-b > *                                                   { vertical-align: bottom;}
+
+
+.no-ani                                                     { animation: none!important; transition: none!important;}
+
+
+
+
+/*******************
+** Section Colors
+*******************/
+@each $shade in $shades
+{
+    .shaded#{nth($shade,1)}                                 { background-color: #{nth($shade,2)};}
+}
+
+.shaded, .shaded-black, [class*="shaded-dark"]
+{
+    &, h1,  h2,  h3,  h4,  h5,  h6,
+    a,.h1, .h2, .h3, .h4, .heading                          { color: #fff;}
+}
+
+.section
+{
+    &                                                       { position: relative;}
+
+    @if $patternSpace != 0
+    {
+        &.plain
+        {
+            &                                               { z-index: 5; margin-top: $patternSpace/2; margin-bottom: $patternSpace/2;}
+
+            &::before, &::after                             { content: ""; @include absolute(auto,auto,auto,0); width: 100%; height: $patternSpace; background-image: url('../images/pattern-edge-white.png'); background-repeat: repeat-x; background-size: auto 100%;}
+
+            &::before                                       { bottom: 100%; background-position: top right;}
+            &::after                                        {    top: 100%; background-position: top left;}
+
+            &:last-child                                    { margin-bottom: 0;}
+            &:last-child::after                             { content: none;}
+
+            & + &::before                                   { content: none;}
+        }
+    }
+}
+
+
+
+/*******************
+** SVG Wrap
+*******************/
+.svg-wrap                                                   { position: relative;
+    svg                                                     { width: 100%;}
+}
+
+
+
+
+/*******************
+** Background Images
+*******************/
+.background                                                 { background-size: cover; background-repeat: no-repeat; background-position: center; width: 100%; height: 100%; transform: scale(1); transition: transform $speed ease;
+    &.darken::before                                        { content: ""; @include absolute(0,0,0,0); z-index: 0; margin: 0; width: 100%; height: 100%; background: #000; opacity: 0.6;}
+    a:hover &                                               { transform: scale(1.1);}
+}
+
+.bg-sticky                                                  { background-attachment: fixed;}
+
+.canPlay::after                                             { content: "";  @include absolute(0,0,0,0); z-index: 10; background: url('../images/icon-play.png') no-repeat center; background-size: 84px;}
+
+.img                                                        { display: block; position: relative; overflow: hidden; padding-top: $postImagePadding;
+    &.short                                                 { padding-top: $postImagePadding*.75;}
+    .background                                             { @include absolute(0,0,0,0); margin: auto;}
+}
+
+
+
+
+/*******************
+** Responsive iFrames
+*******************/
+.embed-container                                            { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 0 auto;
+    iframe, object, embed                                   { position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+}
+
+
+
+
+/*******************
+** Buttons
+*******************/
+@import "buttons";
+
+
+
+
+/*******************
+** Post Previews
+ * - Post Block
+ * - Half Wrap
+*******************/
+@import "post-previews";
+
+
+
+
+/*******************
+** Forms
+*******************/
+@import "forms";
+
+
+
+
+/*******************
+** Slick Carousel
+*******************/
+@import "carousel";

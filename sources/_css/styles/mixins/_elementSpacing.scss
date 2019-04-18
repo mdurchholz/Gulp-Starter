@@ -1,88 +1,162 @@
+$sizes : (
+'.padd-xs' : 0.5,
+'.padd-sm' : 1.0,
+''         : 2.0,
+'.padd-md' : 3.0,
+'.padd-lg' : 4.0,
+'.padd-xl' : 5.0,
+'.padd-nn' : 0.0
+);
+
 @mixin elementSpacing($base)
 {
-    .text, .wysiwyg
-    {
-        h1                                                      { margin-top: $base*3; margin-bottom: $base*.8333;}
-
-        h2, h3                                                  { margin-top: $base*1.5;}
-
-        h1:last-child,
-        h2, h3, h4, h5, h6                                      { margin-bottom: $base;}
-
-        ul, ol, p, blockquote                                   { margin: $base auto;}
-
-
-        h1:first-child, h2:first-child,
-        h3:first-child, p:last-child                            { margin-top: 0;}
-
-        *:first-child                                           { margin-top: 0;}
-        *:last-child                                            { margin-bottom: 0;}
-
-        ul, ol                                                  { padding: 0 5px 0 20px;
-            li                                                  { margin-top: 5px;}
-            li:first-child                                      { margin-top: 0;}
-            ul, ol                                              { margin: 0; padding-left: 30px;}
-        }
-        ul li                                                   { list-style: disc; }
-        ol li                                                   { list-style: decimal;}
-
-        img                                                     { height: auto;}
-
-        .blank img                                              { max-height: 30px;}
-    }
-
-
+    /*******************
+    ** Section Spacing
+    *******************/
     .section
     {
-        &.padd-xs                                               { padding-top: $base/2; padding-bottom: $base/2;}
-        &.padd-sm                                               { padding-top: $base;   padding-bottom: $base;}
-        &                                                       { padding-top: $base*2; padding-bottom: $base*2;}
-        &.padd-md                                               { padding-top: $base*3; padding-bottom: $base*3;}
-        &.padd-lg                                               { padding-top: $base*4; padding-bottom: $base*4;}
-        &.padd-xl                                               { padding-top: $base*5; padding-bottom: $base*5;}
-        &.padd-nn                                               { padding-top: 0;       padding-bottom: 0;}
+        @each $size in $sizes
+        {
+            $gap : map-get($sizes, #{nth($size,1)});
 
-        &.box                                                   { padding: $base*2.5 $base*2; margin: 0;}
+            &#{nth($size,1)}                                { padding-top: $base*$gap; padding-bottom: $base*$gap;}
+        }
 
-        .section                                                { padding: 0; margin-top: $base;}
-        .section:first-child                                    { margin-top: 0;}
+        &.plain
+        {
+            & + &                                           { padding-top: 0;}
 
-        .row                                                    { margin-top: $base*2;
-            &:first-child                                       { margin-top: 0;}
+            @media screen and (min-width: 1025px)
+            {
+                @each $size in $sizes
+                {
+                    $gap : map-get($sizes, #{nth($size,1)});
 
-            > div > :first-child                                { margin-top: 0;}
-            // > div > :last-child                                 { margin-bottom: 0;}
+                    &#{nth($size,1)}                        { padding-top: $base*$gap - $patternSpace/2; padding-bottom: $base*$gap - $patternSpace/2;}
+                }
+
+                @each $size in $sizes
+                {
+                    $gap : map-get($sizes, #{nth($size,1)});
+
+                    &#{nth($size,1)}:last-child             { padding-bottom: $base*$gap;}
+                }
+            }
+        }
+
+
+        &.padd-nn { &, &.plain                              { padding-top: 0; padding-bottom: 0;}}
+
+
+                    .row + .row:not(.columns)               { margin-top: $base*2;}
+        &.padd-sm { .row + .row:not(.columns)               { margin-top: $base;}}
+        &.padd-xs { .row + .row:not(.columns)               { margin-top: $base/2;}}
+
+
+        .box                                                { padding: $base;}
+        .box-lg                                             { padding: $base*2;}
+
+        $adjust: 10px;
+        &.pull-up                                           { padding-bottom: $base*6;
+            + .section                                      { padding-top: 0; position: relative; top: -$base*3 + $adjust; margin-bottom: -$base*3 + $adjust;}
+
+            + .section.plain                                { margin-top: 0;}
+            + .section.plain::before                        { top: $base*2 + $adjust;}
+        }
+
+
+        .section                                            { padding: 0; margin-top: $base;}
+        .section:first-child                                { margin-top: 0;}
+
+
+        .columns
+        {
+            &                                               { margin-top: $base*0.5;}
+            &:first-child                                   { margin-top: -$base*1.5;}
+
+            .post-preview                                   { margin-top: $base*1.5;}
+
+            &.sm
+            {
+                &                                           { margin-top: $base;}
+                .post-preview                               { margin-top: $base;}
+
+                &:first-child                               { margin-top: -$base;}
+            }
         }
     }
 
-    .post-preview                                               { margin-bottom: $base*2;}
 
-    .post-details                                               { //padding-left: $base; padding-right: $base;
-        > *                                                     { margin-top: $base*.8;}
-        > :first-child                                          { margin-top: 0;}
 
-        .tag + *                                                { margin-top: $mobileSpacing;}
 
-        .post-image + &                                         { padding-top: $base;}
+    /*******************
+    ** Copy spacing
+    *******************/
+    .post-text, .wysiwyg
+    {
+         h1,
+        .h1                                                 { margin: $base*3 0 $base;}
+
+         h2,  h3,
+        .h2, .h3                                            { margin: $base*1.5 0 $base*.8333;}
+
+         h4,  h5,  h6,
+        .h4, .h5, .h6                                       { margin: $base 0 $base*.5;}
+
+        .sub-head + { h1, h2, .h1, .h2                      { margin-top: $base/3;}}
+
+        h1, h2 { + .sub-head                                { margin-top: -$base/1.25; margin-bottom: $base;} }
+
+        ul, ol, p, blockquote                               { margin: $base auto;}
+
+        *:first-child                                       { margin-top: 0;}
+        *:last-child                                        { margin-bottom: 0;}
     }
 
-    .post-title                                                 { margin-bottom: -$base*.3;}
+
+
+
+
+    /*******************
+    ** Post Preview Spacing
+    *******************/
+    .post-details
+    {
+        &, &>[data-mh]
+        {
+            > *                                             { margin-top: $base;}
+            > :first-child                                  { margin-top: 0;}
+        }
+
+        .post-image + &                                     { padding-top: $base;}
+    }
+
+
+    .post-title
+    {
+        h1, h2, .h1, .h2,                                   { margin-bottom: -$base/2;}
+
+        h3, .h3                                             { margin-bottom: -$base/3;}
+
+        h4, h5, h6, .h4, .h5, .h6                           { margin-bottom: 0;}
+    }
+
 
     .post-text
     {
-        p { &, .btn                                             { margin: $base*.5 0;}
-            &:last-child , .btn:last-child                      { margin-bottom: 0;}
-            &:first-child, .btn:first-child                     { margin-top: 0;}
+        p, .btn
+        {
+            &                                               { margin: $base*.5 0;}
+            &:first-child                                   { margin-top: 0;}
+            &:last-child                                    { margin-bottom: 0;}
         }
-
-        h4, h5, h6                                              { margin: $base 0 $base*.5;}
     }
 
-    .shaded, .darken
+    .post-preview[class*="shaded"]
     {
-        &.post-preview .post-details                            { padding-bottom: $base*2;}
+        .post-details                                       { padding: $base*1.5 $base;}
+        .post-image + .post-details                         { padding-top: 0;}
+
+        .post-title                                         { margin-top: -$base;}
     }
-
-
-    #filter                                                     { margin-bottom: $base*2;}
 }

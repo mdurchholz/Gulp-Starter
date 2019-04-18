@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  GENERAL
+////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------------------------- */
+*                                                           { box-sizing: border-box; backface-visibility: hidden;}
+
+html                                                        { font-size: 10px;}
+
+body                                                        { @include fonts($font-1, 100%, 400); color: #000;}
+
+img                                                         { max-width: 100%; vertical-align: bottom;}
+                                                            /* Responsive images. Also, fixed spacing at bottom of image sometimes. */
+
+div, span, p,
+ol, ol li,
+ul, ul li                                                   { list-style-type: none; vertical-align: top; padding: 0; margin: 0;}
+                                                            /* Fixes alignment issues */
+
+ h1,  h2,  h3,  h4,  h5,  h6,
+.h1, .h2, .h3, .h4, .heading                                { color: #fff; font-family: $font-2; font-style: normal; display: block; margin: 0;
+    sup                                                     { top: -1.25em; font-size: 50%;}}
+
+
+h1, .h1                                                     { font-size: $fontSize-xxxl; line-height: .9;}
+h2, .h2                                                     { font-size: $fontSize-xxl;}
+h3, .h3                                                     { font-size: $fontSize-xl;}
+h4, .h4                                                     { font-size: $fontSize-lg;}
+h5, .heading, blockquote                                    { font-size: $fontSize-md;}
+p, li, dl, td                                               { font-size: $fontSize-bs; line-height: $fontSize-md;}
+address, th                                                 { font-size: $fontSize-sm;}
+li li                                                       { font-size: 100%;}
+
+// .sub-head                                                   { @include fonts($font-2, $fontSize-md); color: $grey; text-transform: uppercase;}
+
+a, i, img                                                   { text-decoration: none; border: none; outline: none; transition: color $speed ease, background $speed ease, border $speed ease;}
+a                                                           { color: $color-1;}
+a:hover,  .btn:hover,
+a:focus,  .btn:focus,
+a:active, .btn:active, .btn:active:focus                    { color: $color-1-lite; outline: 0; text-decoration: none;}
+
+
+svg *                                                       { transition: all $speed ease;}
+
+
+blockquote                                                  { border-left: 5px solid $color-1; @include fonts($font-1,none,300,1.5); font-style: italic; padding: 0 0 0 $elementSpacing; max-width: 80%;}
+blockquote *                                                { font-size: 100%;}
+
+
+dl                                                          { }
+dt                                                          { margin-top: $mobileSpacing;}
+dd                                                          { }
+
+
+.post-text, .wysiwyg
+{
+    p a:not(.btn)                                           { font-weight: 600; text-decoration: underline;}
+
+    ul, ol                                                  { padding: 0 5px 0 20px;
+        li                                                  { margin-top: 5px;}
+        li:first-child                                      { margin-top: 0;}
+        ul, ol                                              { margin: 0; padding-left: 30px;}
+    }
+    ul li                                                   { list-style: disc; }
+    ol li                                                   { list-style: decimal;}
+
+    img                                                     { height: auto;}
+}

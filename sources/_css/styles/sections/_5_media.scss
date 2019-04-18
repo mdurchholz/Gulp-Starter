@@ -1,0 +1,275 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  TABLE OF CONTENTS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------
+03 - MEDIAQUERIES
+3A   - High DPI
+3B   - Above widths
+3C   - Dektop
+3D   - Tablets
+3E   - Cellular
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+04 - MEDIAQUERIES
+////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------
+/* 4A. High DPI
+----------------------------------------
+////////////////////////////////////// */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx)
+{
+    select                                                  { background-image: url('../images/icon-select-dark@2x.png');}
+    .canPlay::after                                         { background-image: url('../images/icon-play@2x.png');}
+}
+
+
+/* 4B. Mobile Devices
+----------------------------------------
+////////////////////////////////////// */
+@include mobileBreak('.mobile');
+
+
+
+
+/* 4B. Above widths
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (min-width: 1901px)
+{
+    body                                                    { font-size: 115%;}
+
+    [class*="va-"] > *                                      { font-size: 11.5px;}
+}
+
+
+@media screen and (min-width: 1601px)
+{
+
+}
+
+
+@media screen and (min-width: 1200px)
+{
+    [class*="container"], .add-spacing                      { padding-right: $spacing; padding-left: $spacing;}
+
+    .gap-lg
+    {
+        > div > .row                                        { margin-left: -$elementSpacing; margin-right: -$elementSpacing;
+            > div                                           { padding-left: $elementSpacing; padding-right: $elementSpacing;}
+        }
+    }
+}
+
+
+@media screen and (min-width: 992px)
+{
+
+}
+
+
+@media screen and (min-width: 768px)
+{
+
+}
+
+
+
+
+/* 4C. Dektop
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 1600px)
+{
+
+}
+
+
+@media screen and (max-width: 1400px)
+{
+
+}
+
+
+@media screen and (max-width: 1250px)
+{
+
+}
+
+
+@media screen and (max-width: 1199px)
+{
+    [class*="col-xl"]:not([class*="col-lg"]):not([class*="col-md"]):not([class*="col-sm"])
+    {
+        .post-preview                                       { margin: $elementSpacing 0 0;}
+
+        &:first-child .post-preview:first-child             { margin-top: 0;}
+    }
+}
+
+
+
+
+/* 4D. Tablets
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 1024px)
+{
+    @include mobileBreak();
+}
+
+
+@media screen and (max-width: 991px)
+{
+    @include elementSpacing($mobileSpacing);
+
+    [class*="col-lg"]:not([class*="col-md"]):not([class*="col-sm"])
+    {
+        .post-preview                                       { margin: $elementSpacing 0 0;}
+
+        &:first-child .post-preview:first-child             { margin-top: 0;}
+    }
+}
+
+
+@media screen and (max-width: 782px)
+{
+    .admin-bar > #header                                    { top: 46px;}
+}
+
+
+@media screen and (max-width: 767px)
+{
+    [class*="col-md"]:not([class*="col-sm"])
+    {
+        .post-preview                                       { margin: $elementSpacing 0 0;}
+
+        &:first-child .post-preview:first-child             { margin-top: 0;}
+    }
+
+    h1, .h1                                                 { font-size: $fontSize-xxl * .9;}
+    h2, .h2                                                 { font-size: $fontSize-xl  * .9;}
+    h3, .h3                                                 { font-size: $fontSize-lg  * .9;}
+
+    blockquote                                              { font-size: $fontSize-md; padding-left: $mobileSpacing;}
+
+    .post-image .background                                 { @include absolute(0,0,0,0);}
+
+    .no-gutter .row > div                                   { padding-left: $mobileSpacing; padding-right: $mobileSpacing;}
+    .no-gutter .post-preview                                { margin-top: 0;}
+
+    .btn                                                    { padding: 12px 15px;}
+
+    .section
+    {
+        &, &.padd-md, &.padd-lg                             { padding-top: $elementSpacing; padding-bottom: $elementSpacing;
+            &.pull-up                                       { padding-bottom: $elementSpacing*2;
+                + .section                                  { top: -$elementSpacing; margin-bottom: -$elementSpacing;}
+            }
+        }
+
+        &.plain                                             { margin-top: 0; margin-bottom: 0;}
+    }
+
+
+    .half-wrap
+    {
+        .left, .right
+        {
+            .post-image                                     { position: relative; left: auto; right: auto; top: auto; bottom: auto; padding-top: $postImagePadding/2;}
+
+            .post-preview                                   { min-height: 0; padding-top: $elementSpacing; padding-bottom: $elementSpacing;}
+
+            .slick .va-m > *                                { vertical-align: top;}
+        }
+    }
+
+    .carousel
+    {
+        .slick-dots li button                               { padding: 12px;}
+        .slick-dots li button::before                       { width: $mobileSpacing*1.5; height: $mobileSpacing*1.5;}
+
+        .arrow                                              { display: none;}
+
+        &.section
+        {
+            .post-details                                   { padding-left: 0; padding-right: 0;}
+            .append-dots                                    { padding-bottom: $mobileSpacing;}
+
+            &.half-wrap
+            {
+                .post-image .slick-list                     { @include absolute(0,0,0,0);}
+
+                .append-dots                                { position: relative; top: auto; left: auto;}
+
+                .post-details                               { padding: $elementSpacing 0 $mobileSpacing;}
+            }
+
+            &.slider
+            {
+                .slick                                      { margin: $elementSpacing 0 0; max-width: 100%;}
+
+                .arrows                                     { padding: 0;}
+
+                .post-image                                 { margin: 0;}
+                .post-preview                               { margin: 0;}
+                .post-details                               { padding-bottom: $mobileSpacing;}
+            }
+        }
+    }
+
+
+    #footer                                                 { text-align: center;}
+}
+
+
+
+
+/* 4E. Cellular
+----------------------------------------
+////////////////////////////////////// */
+@media screen and (max-width: 667px)
+{
+    body                                                    { font-size: 85%;}
+
+    [class*="va-"] > *                                      { font-size: 8.5px;}
+
+    h1, .h1                                                 { font-size: $fontSize-xxl * .8;}
+    h2, .h2                                                 { font-size: $fontSize-xl  * .8;}
+
+    .canPlay::after                                         { background-size: 42px;}
+
+
+    #mobile-wrap,
+    #header + #wrapper { &, .is-scrolling &                 { padding-top: $headerM;}}
+    #header            { &, .is-scrolling &                 { height: $headerM;}}
+}
+
+
+@media screen and (max-width: 600px)
+{
+    #wpadminbar                                             { position: fixed;}
+}
+
+
+@media screen and (max-width: 480px)
+{
+    .wysiwyg { .alignleft, .alignright                      { float: none; max-width: 100%; margin: 20px auto;}}
+}
+
+
+@media screen and (max-width: 375px)
+{
+    .carousel.slider
+    {
+        *[data-mh]                                          { height: auto !important;}
+
+        .slick > div                                        { width: 100%;}
+    }
+}

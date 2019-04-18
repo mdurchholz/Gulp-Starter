@@ -1,38 +1,25 @@
-var gulp          = require('gulp'),                  // Gulp
-    plugins       = require('gulp-load-plugins')(),   // This plugin allows us to use all of our packageswithout creating varibles for each one
-    connect       = new plugins.connectPhp(),         // Gulp php server
-    browserSync   = require('browser-sync').create(), // BrowserSync
-    htmlOptions   = {collapseWhitespace: true},       // HTML minification options
+var gulp          = require('gulp'),
+    plugins       = require('gulp-load-plugins')(),
 
-
-    /************
-    * Paths
-    ************/
-    baseDir       = '../',
-    proRoot       = baseDir + 'assets/',
-
+    sourceRoot    = '',
     nodeRoot      = 'node_modules/',
+    publicH       = '../public_html/',
+    proRoot       = publicH+'assets/',
 
-    sourceCss     = '_css/',
-    sourceHtml    = '_html',
-    sourceScripts = '_scripts/',
+    sourceCss     = sourceRoot+'_css/',
+    sourceHtml    = sourceRoot+'_html/',
+    sourceScripts = sourceRoot+'_scripts/',
 
+    htmlOptions   = { conditionals: true, spare: true, collapseWhitespace: true },
 
-    /************
-    * Asset List
-    ************/
-    assets        = {   /************
+    paths         = {
+                        /************
                         * JS
                         ************/
                         dev_scripts:
                         [
                             nodeRoot+'jquery/dist/jquery.min.js',
-                            nodeRoot+'bootstrap-sass/assets/javascripts/bootstrap.min.js',
-                            // nodeRoot+'slick-carousel/slick/slick.min.js',
-                            // nodeRoot+'jquery-match-height/dist/jquery.matchHeight-min.js',
-                            // nodeRoot+'@fancyapps/fancybox/dist/jquery.fancybox.min.js',
-                            // nodeRoot+'js-cookie/src/js.cookie.js',
-
+                            nodeRoot+'bootstrap/dist/js/bootstrap.min.js',
                             sourceScripts+'lib.js',
                             sourceScripts+'app.js'
                         ],
@@ -42,175 +29,127 @@ var gulp          = require('gulp'),                  // Gulp
                         /************
                         * CSS
                         ************/
-                        dev_styles:
+                        dev_css:
                         [
-                            sourceCss+'styles/_my-mixins.scss',
-
-                            nodeRoot+'font-awesome/scss/font-awesome.scss',
-                            nodeRoot+'bootstrap-sass/assets/stylesheets/_bootstrap.scss',
-                            // nodeRoot+'slick-carousel/slick/slick.css',
-                            // nodeRoot+'@fancyapps/fancybox/dist/jquery.fancybox.min.css',
-
-                            sourceCss+'main.scss'
+                            nodeRoot+'bootstrap/dist/css/bootstrap.min.css',
+                            sourceCss+'master.scss'
                         ],
-                        pro_styles: proRoot+'css',
+                        pro_css: proRoot+'css',
 
 
                         /************
                         * HTML
                         ************/
-                        // dev_html: sourceHtml+'/**/*',
-                        // pro_html: proRoot,
+                        dev_html_includes: sourceHtml+'includes/*',
+                        pro_html_includes: proRoot+'includes/',
+
+                        dev_html_app: sourceHtml+'*.php',
+                        pro_html_app: publicH,
 
 
                         /************
-                        * FILES
+                        * FONTS
                         ************/
-                        dev_files:
+                        dev_fonts:
                         [
-                            [nodeRoot+'font-awesome/fonts/*'],
-                            [nodeRoot+'bootstrap-sass/assets/fonts/bootstrap/*']
-                            //
-                            // Add in jquery manually in order to replicate Wordpress
-                            // [nodeRoot+'jquery/dist/jquery.min.js']
+                            nodeRoot+'bootstrap/fonts/*',
+                            nodeRoot+'font-awesome/fonts/*'
                         ],
-                        pro_files:
+                        pro_fonts:
                         [
-                            proRoot+'fonts',
-                            proRoot+'fonts/bootstrap'
-                            // proRoot+'scripts'
+                            proRoot+'fonts'
                         ]
 
                         /***  MAKE SURE YOUR COMMAS ARE CORRECT  ***/
                     };
 
 
-
-
 /*  gulp js
 /////////////////////////////////////////////////////////
 // Minimize all the listed javascript files from above
 -------------------------------------------------------*/
-gulp.task('js', function(done){
-    gulp.src(assets.dev_scripts)
+gulp.task('js', function(){
+    return gulp.src(paths.dev_scripts)
         .pipe(plugins.concat('master.js'))
-        .pipe(gulp.dest(assets.pro_scripts))
+        .pipe(gulp.dest(paths.pro_scripts))
         .pipe(plugins.rename('master.min.js'))
         .pipe(plugins.uglify())
-        .pipe(gulp.dest(assets.pro_scripts))
-        .pipe(browserSync.stream());
-
-    done();
+        .pipe(gulp.dest(paths.pro_scripts));
 });
-
-
 
 
 /*  gulp css
 /////////////////////////////////////////////////////////
 // Minimize all the listed css files from above
 -------------------------------------------------------*/
-gulp.task('css', function(done){
-    gulp.src(assets.dev_styles)
+gulp.task('css', function(){
+    gulp.src(paths.dev_css)
         .pipe(plugins.concat('master.css'))
-        .pipe(plugins.sass({
-            includePaths: [
-                nodeRoot+'font-awesome/scss/',
-                nodeRoot+'bootstrap-sass/assets/stylesheets/',
-                sourceCss
-            ]
-        }))
-        .pipe(plugins.autoprefixer('last 2 version','safari 5','ie 8','ie 9','opera 12.1','ios 6','android 4'))
-        .pipe(gulp.dest(assets.pro_styles))
+        .pipe(plugins.sass({includePaths: [sourceCss]}))
+        .pipe(plugins.autoprefixer({browsers: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'], cascade: false}))
+        .pipe(gulp.dest(paths.pro_css))
         .pipe(plugins.rename('master.min.css'))
-        .pipe(plugins.cssnano({discardComments:{removeAll: true}}))
-        .pipe(gulp.dest(assets.pro_styles))
-        .pipe(browserSync.stream());
-
-    done();
+        .pipe(plugins.cssnano({discardComments: {removeAll: true}}))
+        .pipe(gulp.dest(paths.pro_css));
 });
 
 
-
-
-/*  gulp partials
+/*  gulp fonts
 /////////////////////////////////////////////////////////
-// Minimize all HTML files
+// Move font file from node_modules to public_html
+-------------------------------------------------------*/
+gulp.task('fonts', function() {
+    for(var i=0; i < paths.dev_fonts.length; i++)
+    {
+        moveFont(i);
+    }
+});
+
+function moveFont(place)
+{
+    return gulp.src(paths.dev_fonts[place])
+      .pipe(gulp.dest(paths.pro_fonts[place]));
+}
+
+
+/*  gulp includes
+/////////////////////////////////////////////////////////
+// Minimize all includes
+-------------------------------------------------------*/
+gulp.task('includes', function() {
+    return gulp.src(paths.dev_html_includes)
+        .pipe(plugins.htmlmin(htmlOptions))
+        .pipe(gulp.dest(paths.pro_html_includes));
+});
+
+
+/*  gulp app
+/////////////////////////////////////////////////////////
+// Minimize all base files
+-------------------------------------------------------*/
+gulp.task('app', function() {
+    return gulp.src(paths.dev_html_app)
+        .pipe(plugins.htmlmin(htmlOptions))
+        .pipe(gulp.dest(paths.pro_html_app));
+});
+
+
+/*  gulp html
+/////////////////////////////////////////////////////////
+// Run all the listed html gulp commands at once
 -------------------------------------------------------*/
 gulp.task('html', function() {
-    return gulp.src(paths.dev_html)
-        .pipe($.htmlmin(htmlOptions))
-        .pipe(gulp.dest(paths.pro_html));
+    gulp.start('includes', 'app');
 });
 
 
-
-
-/*  gulp move
+/*  gulp
 /////////////////////////////////////////////////////////
-// Move files from node_modules to public_html
+// Run all listed gulp commands at once
 -------------------------------------------------------*/
-gulp.task('move', function(done) {
-    for(var i=0; i < assets.dev_assets.length; i++)
-    {
-        for(var j=0; j < assets.dev_files[i].length; j++)
-        {
-            moveFiles(i, j);
-        }
-    }
-
-    done();
+gulp.task('default', function(){
+    gulp.start('js', 'css', 'html', 'fonts');
 });
-
-function moveFiles(i, j)
-{
-    return gulp.src(assets.dev_files[i][j])
-               .pipe(gulp.dest(assets.pro_files[i]));
-}
-
-
-
-
-/*  gulp build
-/////////////////////////////////////////////////////////
-// Compress all files
--------------------------------------------------------*/
-gulp.task('build', gulp.parallel('js', 'css', 'move'));
-
-
-
-
-/*  gulp connect
-/////////////////////////////////////////////////////////
-// Reload the browser after save
--------------------------------------------------------*/
-gulp.task('connect', gulp.series('build', setupServer));
-
-gulp.task('disconnect', function(done) {
-    connect.closeServer();
-
-    done();
-});
-
-function setupServer()
-{
-    var portNum = 8012;
-
-    connect.server({ base: baseDir+'.', port: portNum}, function(){
-        browserSync.init({
-            proxy  : '127.0.0.1:'+portNum,
-            notify : false,
-            port   : 8080,
-            files  : [
-                baseDir+'*.php',
-                proRoot+'css/master.min.css',
-                proRoot+'scripts/master.min.js'
-            ]
-        });
-    });
-}
-
-
 
 
 /*  gulp watch
@@ -218,27 +157,21 @@ function setupServer()
 // Watch the list of files and run the
 // associted gulp task for "On Save"
 -------------------------------------------------------*/
-var watch_css = assets.dev_styles.concat([
-                    // sourceCss+'libraries/**/*.scss',
-                    // sourceCss+'styles/**/*.scss'
-                    sourceCss+'**/*.scss'
-                ]),
-    watch_js  = assets.dev_scripts.concat([
+var addCss = [sourceCss+'_style.scss', sourceCss+'_media.scss'];
+var addJs  = [];
 
-                ]);
 
 gulp.task('watch', function(){
-    gulp.watch(watch_css, gulp.parallel('css'));
-    gulp.watch(watch_js,  gulp.parallel('js') );
+    gulp.watch(addToWatchList(addCss, paths.dev_css),     ['css']);
+    gulp.watch(addToWatchList(addJs,  paths.dev_scripts), ['js'] );
+    gulp.watch(paths.dev_html_includes, ['includes']);
+    gulp.watch(paths.dev_html_app, ['app']);
 });
 
 
+function addToWatchList(array, list)
+{
+    array.push(list);
 
-
-/*  gulp
-/////////////////////////////////////////////////////////
-// Build all files
-// Connect to a vertiual server
-// Compress SASS and JS on Save
--------------------------------------------------------*/
-gulp.task('default', gulp.parallel('watch',  gulp.series('connect', 'disconnect')));
+    return array;
+}

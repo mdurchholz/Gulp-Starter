@@ -78,7 +78,7 @@ a img.aligncenter {
 }
 
 .wp-caption p {
-    @include fonts($openSans,$fontSize-sm,400,1.5);
+    @include fonts($font-1,$fontSize-sm,400,1.5);
     margin: 0;
     color: #e1e2e2;
     padding: 12px 24px;

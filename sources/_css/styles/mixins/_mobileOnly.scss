@@ -17,4 +17,12 @@
 @mixin mobileStyles()
 {
 
+    #mobile-wrap,
+    #header + #wrapper { &, .is-scrolling &                 { padding-top: $headerT;}}
+    #header            { &, .is-scrolling &                 { height: $headerT;
+        .logo                                               { }
+    }}
+
+
+    #mobile-button                                          { display: block;}
 }

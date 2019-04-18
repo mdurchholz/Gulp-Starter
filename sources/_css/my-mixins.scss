@@ -1,0 +1,133 @@
+/* -------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+MIXINS.SCSS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------------------------- */
+/* Variables
+----------------------------------------
+////////////////////////////////////// */
+$speed : 0.25s;
+
+
+/**********************
+** Consistent Element Spacing
+**********************/
+$elementSpacing : 30px;
+$mobileSpacing  : $elementSpacing/2;
+/*********************/
+
+
+/**********************
+** Ripped Pattern Spacing
+**********************/
+$patternSpace: 0;
+
+
+/**********************
+** Header Heights
+**********************/
+$headerH: 160px; // At very top
+$headerS: 120px; // When scrolling
+$headerT: 100px; // On tablet
+$headerM: 80px;  // On mobile
+
+
+/**********************
+** Colors
+**********************/
+$grey-litest  : #fefefe;
+$grey-liter   : #ccc;
+$grey-lite    : #aaa;
+$grey         : #999;
+$grey-dark    : #666;
+$grey-darker  : #333;
+$grey-darkest : #191919;
+/* Color 1 */
+$color-1      : #f00;
+$color-1-lite : '';
+/* Color 2 */
+$color-2      : #0f0;
+$color-2-lite : '';
+/*********************/
+$shades : (
+'-litest'  : $grey-litest,
+'-liter'   : $grey-liter,
+'-lite'    : $grey-lite,
+''         : $grey,
+'-dark'    : $grey-dark,
+'-darker'  : $grey-darker,
+'-darkest' : $grey-darkest,
+
+'-white'   : #fff,
+'-black'   : #000,
+
+'-color-1' : $color-1,
+'-color-2' : $color-2
+);
+
+/********************
+** Font Families
+*********************/
+$font-1 : 'Arial', sans-serif;
+$font-2 : 'Verdana', sans-serif;
+/********************************
+** Font Sizes
+*********************************/
+$fontSize-xxxl : 9.2em;  /* 92px => h1 */
+$fontSize-xxl  : 5.7em;  /* 57px => h2 */
+$fontSize-xl   : 4.5em;  /* 45px => h3 */
+$fontSize-lg   : 3.0em;  /* 30px => h4 */
+$fontSize-md   : 1.9em;  /* 19px => h5, .heading, sub headings */
+$fontSize-bs   : 1.6em;  /* 14px => text and buttons */
+$fontSize-sm   : 1.2em;  /* 12px => .tag */
+
+
+/********************************
+** Post Image Sizing
+*********************************/
+$postImagePadding: 71.4286%;
+
+
+/********************************
+** Container Spacing
+*********************************/
+$spacing: 10.8em;
+
+
+/********************
+** Mixin Variables
+******************* */
+$fa-font-path : "../fonts/font-awesome";
+
+
+
+
+/* Mixins
+----------------------------------------
+////////////////////////////////////// */
+/********************
+** Packages
+*********************/
+@function max($numbers...){ @return m#{a}x(#{$numbers}); }
+@function min($numbers...){ @return m#{i}n(#{$numbers}); }
+
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+/********************
+** Custom Mixins
+*********************/
+@import "styles/mixins/defaults";
+@import "styles/mixins/fonts";
+@import "styles/mixins/mobileOnly";
+@import "styles/mixins/elementSpacing";
+
+
+/********************
+** Custom Libraries
+*********************/
+@import "styles/libraries/animate";
+@import "styles/libraries/fx";
+@import "styles/libraries/hide-n-seek";
+@import "styles/libraries/wordpress";

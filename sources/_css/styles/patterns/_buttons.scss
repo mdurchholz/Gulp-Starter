@@ -1,0 +1,58 @@
+/*--------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  BUTTONS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------------------------------------------------------------------------------------*/
+.btn                                                        { display: inline-block; position: relative; background: $color-1; border: 1px solid $color-1; color: #fff; text-transform: uppercase; border-radius: 3px; letter-spacing: normal; height: auto; @include fonts($font-1, $fontSize-bs, 700, 1); padding: 16px 22px; cursor: pointer; backface-visibility: visible; box-shadow: 0px 0px 30px -2px rgba(0, 0, 0, 0.5); transition: all $speed ease;
+
+    li &                                                    { font-size: 100%;}
+
+    /* DEFAULT */
+    &:hover, &:active, &:focus, &:active:focus              { background: $color-1; color: #fff;}
+
+
+    /* Standard Links */
+    &.link                                                  { background: none; border: none; border-radius: 0; padding: 0; color: $color-1; font-family: $font-1;
+        &:hover, &:active, &:focus, &:active:focus          { background: none; color: $color-1;}
+
+        img                                                 { margin: 0; max-height: 45px;}
+    }
+
+
+    /* Blank */
+    &.blank                                                 { background: none; border: 1px solid $color-1; color: $color-1; text-decoration: underline;
+        &:hover, &:active, &:focus, &:active:focus          { background: none;}
+    }
+
+
+    i                                                       { font-size: $fontSize-sm;}
+    i:first-child                                           { margin-right: 10px; margin-left: 0;}
+    i:last-child                                            { margin-right: 0; margin-left: 10px;}
+}
+
+
+/*******************
+** Inline Buttons
+*******************/
+.btns
+{
+    .btn                                                    { margin-right: 10px;}
+    .btn:last-child                                         { margin: 0;}
+
+    .link                                                   { padding-right: 10px; margin: 0; position: relative; /* make up space for inline-block */
+        &:last-child                                        { padding-right: 0;}
+        & + .link                                           { padding-left: 15px;
+            &::before                                       { @include absolute(0,auto,0,-1px); margin: auto; width: 2px; height: 16px; background: $color-1; content: "";}
+        }
+        & + .btn                                            { margin-left: 0;}
+    }
+}
+
+
+/*******************
+** Button Groups
+*******************/
+.btn-group
+{
+    .btn.active                                             { z-index: 100;}
+}
